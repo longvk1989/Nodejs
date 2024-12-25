@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
+const compression = require('compression');
+const path = require('path');
 
 const userRoutes = require('./routes/userRoutes');
 const mainRouter = require('./routes/main');
@@ -14,6 +16,12 @@ app.use(express.json());
 
 //Security
 app.use(helmet());
+
+//Compress
+app.use(compression());
+
+//Cache static file in 1 day
+app.use(express.static(path.join(__dirname, 'public'), {maxAge: '1d'}));
 
 //App routes
 app.use(mainRouter);

@@ -22,10 +22,10 @@ router.get('/users', authMiddleware, async (req, res) => {
     try{
         const { page = 1, limit = 10 } = req.query;
 
-        const users = await User.find()
+        const users = await User.find({}, { username: 1, age: 1})
             .limit(limit * 1)
             .skip((page - 1) * limit)
-            .exec();
+            .lean();
 
         const totalUsers = await User.countDocuments();
 
