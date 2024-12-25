@@ -1,9 +1,9 @@
 const crypto = require('crypto');
 
-const generateSecretKey = () => {
+const generateKey = () => {
     const secretKey = crypto.randomBytes(32).toString('hex');
-    console.log('secretKey', secretKey);
+    console.log('generated key:', secretKey);
     return secretKey;
 };
 
-generateSecretKey();
+generateKey();

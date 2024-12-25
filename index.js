@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const helmet = require('helmet');
 
 const userRoutes = require('./routes/userRoutes');
 const mainRouter = require('./routes/main');
@@ -10,6 +11,9 @@ const port = process.env.PORT || 3000;
 
 //Middleware
 app.use(express.json());
+
+//Security
+app.use(helmet());
 
 //App routes
 app.use(mainRouter);
